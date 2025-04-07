@@ -2,7 +2,7 @@ name: LeetCode Email Monitor
 
 on:
   schedule:
-    - cron: '30 19-23,0-7 * * *'  # Runs at the 30th minute of hours 19-23 and 0-7 UTC
+    - cron: '30 18-23,0-10 * * *' # Runs at the 30th minute of hours 19-23 and 0-7 UTC
 
 jobs:
   run_script:
@@ -14,7 +14,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x' # Or specify your preferred version (e.g., '3.9')
+          python-version: '3.10' # Or specify your preferred version (e.g., '3.9')
 
       - name: Install dependencies
         run: pip install -r requirements.txt
