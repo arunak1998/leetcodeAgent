@@ -236,27 +236,4 @@ def run_monitoring_workflow():
 
 # --- Scheduling ---
 if __name__ == "__main__":
-    print("Running initial test of LeetCode monitoring and email service...")
     run_monitoring_workflow()
-    print(
-        "\nInitial test completed. The service will now run hourly from 12 AM to 12 PM Chennai time."
-    )
-
-    def schedule_hourly_run():
-        now_chennai = datetime.now(tz=timezone(timedelta(hours=5, minutes=30)))
-        current_hour = now_chennai.hour
-        if 0 <= current_hour < 12:  # Hours from 0 (12 AM) to 11 (11 AM)
-            run_monitoring_workflow()
-            print(
-                f"Hourly run executed at {now_chennai.strftime('%Y-%m-%d %I:%M %p %Z%z')}"
-            )
-
-    # Run immediately on startup for testing
-    schedule_hourly_run()
-
-    # Schedule hourly runs between 12 AM and 12 PM Chennai time
-    schedule.every().hour.at(":00").do(schedule_hourly_run)
-
-    while True:
-        schedule.run_pending()
-        time.sleep(60)
